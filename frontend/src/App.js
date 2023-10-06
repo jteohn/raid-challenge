@@ -1,21 +1,20 @@
-import "./App.css";
+import Navbar from "./components/Navbar";
+import Home from "./pages/home";
+import Cart from "./pages/cart";
+import Inventory from "./pages/inventory";
+import History from "./pages/history";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/inventory" element={<Inventory />} />
+        <Route path="/history" element={<History />} />
+      </Routes>
     </div>
   );
 }
