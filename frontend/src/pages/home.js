@@ -1,5 +1,5 @@
 import ProductContainer from "../components/ProductContainer";
-// import OrderSummary from "../components/OrderSummary";
+// import HomeOrderSummary from "../components/HomeOrderSummary";
 
 function Home() {
   // const isMobile = window.innerWidth < 600;
@@ -7,7 +7,7 @@ function Home() {
   return (
     <div className="App flex">
       <ProductContainer />
-      {/* {isMobile ? <></> : <OrderSummary />} */}
+      {/* {isMobile ? <></> : <HomeOrderSummary />} */}
     </div>
   );
 }
