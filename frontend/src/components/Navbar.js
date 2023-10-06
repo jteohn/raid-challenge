@@ -15,12 +15,12 @@ function Navbar() {
       route: "/cart",
     },
     {
-      label: "Inventory",
-      route: "/inventory",
+      label: "Orders",
+      route: "/orders",
     },
     {
-      label: "History",
-      route: "/history",
+      label: "Inventory",
+      route: "/inventory",
     },
   ];
 
