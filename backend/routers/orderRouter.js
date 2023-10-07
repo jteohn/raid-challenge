@@ -7,6 +7,8 @@ class OrderRouter {
   }
   routes() {
     router.get("/", this.controller.viewOrderSummary);
+    router.post("/promo", this.controller.applyPromoCode);
+    router.post("/", this.controller.addNewOrder);
     return router;
   }
 }
