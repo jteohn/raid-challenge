@@ -114,6 +114,7 @@ class OrderController {
       // map through the list of items to retrieve the 'productId' and 'quantity'
       const itemsCheckedOut = allItemsInCart.map((item) => {
         return {
+          id: item.id,
           name: item.product.name,
           productId: item.productId,
           quantity: item.quantity,
@@ -152,6 +153,24 @@ class OrderController {
     }
   };
 
+  // =================== VIEW ALL ORDERS =================== //
+  getAllOrders = async (req, res) => {
+    try {
+      const allOrders = await this.order.findAll();
+
+      return res.status(200).json({
+        success: true,
+        data: allOrders,
+        msg: "Success: All orders retrieved!",
+      });
+    } catch (error) {
+      return res.status(400).json({
+        error: true,
+        msg: "Error: We encountered an error while handling your request. Please try again.",
+      });
+    }
+  };
+
   calculateTotalAmount = async (cart, discountAmount = 0) => {
     try {
       const allItemsInCart = await cart.findAll();
@@ -162,11 +181,12 @@ class OrderController {
       }, 0);
 
       const totalAmount = subtotal - discountAmount;
+      const total = totalAmount > 0 ? totalAmount : 0;
 
       return {
         subtotal: subtotal.toFixed(2),
         discount: discountAmount.toFixed(2),
-        total: totalAmount.toFixed(2),
+        total: total.toFixed(2),
       };
     } catch (error) {
       throw error;

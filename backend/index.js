@@ -45,8 +45,8 @@ app.use(express.urlencoded({ extended: false }));
 
 // using the routers
 app.use("/products", productRouter);
-app.use("/cart", cartRouter);
-app.use("/order", orderRouter);
+app.use("/carts", cartRouter);
+app.use("/orders", orderRouter);
 
 app.listen(PORT, () => {
   console.log(`Express app listening on port ${PORT}!`);

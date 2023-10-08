@@ -1,17 +1,17 @@
-function OrderItem() {
+import moment from "moment";
+
+function OrderItem(props) {
+  const { allOrders } = props;
+
   return (
     <>
-      <tr>
-        <td>N001</td>
-        <td>$4</td>
-        <td>7/10/2023</td>
-      </tr>
-      {/* 2nd ROW */}
-      <tr>
-        <td>N002</td>
-        <td>$10</td>
-        <td>8/10/2023</td>
-      </tr>
+      {allOrders.map((order) => (
+        <tr key={order.id}>
+          <td>N00{order.id}</td>
+          <td>${order.total}</td>
+          <td>{moment(order.createdAt).format("DD/MM/YYYY")}</td>
+        </tr>
+      ))}
     </>
   );
 }

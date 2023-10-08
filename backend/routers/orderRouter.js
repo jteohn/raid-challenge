@@ -9,6 +9,7 @@ class OrderRouter {
     router.get("/", this.controller.viewOrderSummary);
     router.post("/promo", this.controller.applyPromoCode);
     router.post("/", this.controller.addNewOrder);
+    router.get("/all", this.controller.getAllOrders);
     return router;
   }
 }

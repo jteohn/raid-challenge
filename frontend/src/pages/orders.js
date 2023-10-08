@@ -3,7 +3,7 @@ import ButtonBack from "../components/ButtonBack";
 
 function Orders() {
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 pb-8">
       <div className="flex flex-start pl-16 pt-8">
         <ButtonBack />
       </div>

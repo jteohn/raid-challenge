@@ -96,6 +96,7 @@ class CartController {
         await this.cart.update(
           {
             quantity,
+            amount: item.product.price * quantity,
           },
           { where: { id: cartId } }
         );
