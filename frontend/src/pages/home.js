@@ -6,6 +6,7 @@ import LoadingIcon from "../components/LoadingIcon";
 function Home() {
   const [allProducts, setAllProducts] = useState([]);
   const [allCartItems, setAllCartItems] = useState([]);
+  const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -48,8 +49,7 @@ function Home() {
         <div className="text-3xl font-semibold flex justify-center pt-8">
           All Products
         </div>
-        <div className="flexjustify-center pt-8">Search</div>
-        <div className="flex justify-center pt-8">
+        <div className="flex justify-center pt-12">
           <div>
             <ProductCard
               allProducts={allProducts}
