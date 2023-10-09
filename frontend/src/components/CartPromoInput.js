@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 function CartPromoInput({
   promoCode,
@@ -18,8 +19,10 @@ function CartPromoInput({
       );
       setCartOrderSummary(response.data.data);
       setHasPromoCode(true);
+      toast.success("Promo code has been applied!");
     } catch (error) {
       console.log(error.response.data.msg);
+      toast.info(`The promo code '${promoCode}' is invalid or expired.`);
       setPromoCode("");
     }
   };

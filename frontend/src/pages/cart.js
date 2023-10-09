@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 import CartItemTable from "../components/CartItemTable";
 import CartPromoContainer from "../components/CartPromoContainer";
 import CartTotalTable from "../components/CartTotalTable";
@@ -65,12 +66,15 @@ function Cart() {
           promoCode,
         }
       );
-      // console.log(response.data.data);
       setItemsCheckedOut(response.data.data.itemsCheckedOut);
       setOrderDetails(response.data.data.newOrderEntry);
       setShowOrderModal(true);
+      toast.success("Your order has been received!");
     } catch (error) {
       console.log(error.response.data.msg);
+      toast.error(
+        "We encountered an issue processing your order. Please try again."
+      );
     }
   };
 

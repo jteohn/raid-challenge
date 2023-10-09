@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 import EditInventoryModal from "./EditInventoryModal";
 
 function InventoryItem(props) {
@@ -17,8 +18,10 @@ function InventoryItem(props) {
         }
       );
       setAllProducts(response.data.data);
+      toast.success("Product inventory updated successfully!");
     } catch (error) {
       console.log(error.response.data.msg);
+      toast.warning("Unable to update inventory. Please try again.");
     }
     setLoading(false);
   };

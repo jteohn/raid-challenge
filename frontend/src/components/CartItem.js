@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 import { RxCross2 } from "react-icons/rx";
 
 function CartItem(props) {
@@ -9,6 +10,7 @@ function CartItem(props) {
       `${process.env.REACT_APP_DB_API}/carts/${itemId}`
     );
     setAllCartItems(response.data.data);
+    toast.success("The product has been removed from your cart.");
   };
 
   const sortedCartArray =

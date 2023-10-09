@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 function ProductCard(props) {
   const { allProducts, allCartItems, setAllCartItems } = props;
   const [cartQuantity, setCartQuantity] = useState({});
 
   useEffect(() => {
-    // object containing cart.id and cart.quantity
+    // initialise object containing cart.id and cart.quantity
     const currentItemQtyObject = {};
-    // create a key-value pair in the currentItemQtyObject
     allCartItems.forEach((item) => {
       currentItemQtyObject[item.id] = item.quantity;
     });
-
     setCartQuantity(currentItemQtyObject);
   }, [allCartItems]);
 
@@ -28,8 +27,10 @@ function ProductCard(props) {
           }
         );
         setAllCartItems(response.data.data);
+        toast.success("Item added to cart successfully!");
       } catch (error) {
-        console.log(`${error.response.data.msg}`);
+        console.error(`${error.response.data.msg}`);
+        toast.warning("Unable to add item to cart. Please try again.");
       }
     } else {
       try {
@@ -41,8 +42,10 @@ function ProductCard(props) {
           }
         );
         setAllCartItems(response.data.data);
+        toast.success("Item added to cart successfully!");
       } catch (error) {
-        console.log(`${error.response.data.msg}`);
+        console.error(`${error.response.data.msg}`);
+        toast.warning("Unable to add item to cart. Please try again.");
       }
     }
   };
@@ -55,6 +58,7 @@ function ProductCard(props) {
         `${process.env.REACT_APP_DB_API}/carts/${cartId}`
       );
       setAllCartItems(response.data.data);
+      toast.success("The product has been removed from your cart.");
     } else {
       try {
         const response = await axios.put(
@@ -64,8 +68,10 @@ function ProductCard(props) {
           }
         );
         setAllCartItems(response.data.data);
+        toast.success("You've removed an item from your cart.");
       } catch (error) {
         console.log(`${error.response.data.msg}`);
+        toast.warning("Unable to remove item from cart. Please try again.");
       }
     }
   };
@@ -76,7 +82,6 @@ function ProductCard(props) {
   return (
     <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 pb-6">
       {sortedProductsArray.map((product) => {
-        // match the productId in allCartItems to the allProducts' product.id
         const cartItem = allCartItems.find(
           (item) => item.productId === product.id
         );
@@ -135,5 +140,3 @@ function ProductCard(props) {
 }
 
 export default ProductCard;
-
-// TODO: map, find, forEach
